@@ -1,0 +1,68 @@
+sudo dmidecode|less //decoce bios
+
+P=1; for i in $(seq -w 200); do echo "192.168.99.$P n$i"; P=$(expr $P + 1); done //gen ips
+
+To see the contents of your MBR, use this command:
+# dd if=/dev/hda of=mbr.bin bs=512 count=1
+# od -xa mbr.bin 
+The primary boot loader that resides in the MBR is a 512-byte image containing both program code and a small partition table (see Figure 2). The first 446 bytes are the primary boot loader, which contains both executable code and error message text. The next sixty-four bytes are the partition table, which contains a record for each of four partitions (sixteen bytes each). The MBR ends with two bytes that are defined as the magic number (0xAA55). The magic number serves as a validation check of the MBR.
+
+
+From the GRUB command-line, you can boot a specific kernel with a named initrd image as follows:
+grub> kernel /bzImage-2.6.14.2
+  [Linux-bzImage, setup=0x1400, size=0x29672e]
+
+grub> initrd /initrd-2.6.14.2.img
+  [Linux-initrd @ 0x5f13000, 0xcc199 bytes]
+
+grub> boot
+
+Uncompressing Linux... Ok, booting the kernel.
+
+If you don't know the name of the kernel to boot, just type a forward slash (/) and press the Tab key. GRUB will display the list of kernels and initrd images.
+
+
+$ sudo modprobe nilfs2
+$ dd if=/dev/zero of=/tmp/disk.img bs=384M count=1
+1+0 records in
+1+0 records out
+402653184 bytes (403 MB) copied, 60.7253 s, 6.6 MB/s
+$ mkfs.nilfs2 /tmp/disk.img
+mkfs.nilfs2 ver 2.0
+Start writing file system initial data to the device
+       Blocksize:4096  Device:/tmp/disk.img  Device Size:402653184
+File system initialization succeeded !!
+
+$ sudo losetup /dev/loop0 /tmp/disk.img
+$ sudo mkdir /mnt/nilfs
+$ sudo mount -t nilfs2 /dev/loop0 /mnt/nilfs/
+mount.nilfs2: WARNING! - The NILFS on-disk format may change at any time.
+mount.nilfs2: WARNING! - Do not place critical data on a NILFS filesystem.
+$ ls /mnt/nilfs
+
+$ cd /mnt/nilfs
+$ sudo touch file1.txt file2.txt
+$ lscp
+                 CNO        DATE     TIME  MODE  FLG   NBLKINC       ICNT
+                   1  2009-08-21 22:29:31   cp    -         11          3
+                   2  2009-08-21 22:36:44   cp    -         11          5
+$ sudo mkcp -s
+$ lscp
+                 CNO        DATE     TIME  MODE  FLG   NBLKINC       ICNT
+                   1  2009-08-21 22:29:31   cp    -         11          3
+                   2  2009-08-21 22:36:44   ss    -         11          5
+                   3  2009-08-21 22:39:47   cp    i          7          5
+
+$ sudo touch file3.txt file4.txt
+$ ls
+file1.txt  file2.txt  file3.txt  file4.txt
+
+
+$ sudo mkdir /mnt/nilfs-ss2
+$ sudo mount.nilfs2 -r /dev/loop0 /mnt/nilfs-ss2/ -o cp=2
+$ ls /mnt/nilfs
+file1.txt  file2.txt  file3.txt  file4.txt
+$ ls /mnt/nilfs-ss2/
+file1.txt  file2.txt
+$
+

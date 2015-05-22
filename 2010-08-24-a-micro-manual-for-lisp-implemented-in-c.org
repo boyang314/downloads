@@ -1,0 +1,544 @@
+  
+
+
+<!DOCTYPE html>
+<html>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# githubog: http://ogp.me/ns/fb/githubog#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>nakkaya.com/resources/posts/2010-08-24-a-micro-manual-for-lisp-implemented-in-c.org at master · nakkaya/nakkaya.com · GitHub</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub" />
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png" />
+    <link rel="logo" type="image/svg" href="http://github-media-downloads.s3.amazonaws.com/github-logo.svg" />
+    <link rel="assets" href="https://a248.e.akamai.net/assets.github.com/">
+    <link rel="xhr-socket" href="/_sockets" />
+    
+
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="selected-link" value="repo_source" data-pjax-transient />
+    <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" />
+
+    
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <meta content="authenticity_token" name="csrf-param" />
+<meta content="Fara1d2w0uDq7i8LGSfemPtWZZxql/oRxWg0QqzJcnM=" name="csrf-token" />
+
+    <link href="https://a248.e.akamai.net/assets.github.com/assets/github-a4c524f2138ecc4dd5bf9b8a6b1517bf38aa7b65.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://a248.e.akamai.net/assets.github.com/assets/github2-90ab6d28026c957cc4eb3342b1512f4c4737ede5.css" media="all" rel="stylesheet" type="text/css" />
+    
+
+
+      <script src="https://a248.e.akamai.net/assets.github.com/assets/frameworks-5c60c478b1e0f90d149f11ed15aa52edd2996882.js" type="text/javascript"></script>
+      <script src="https://a248.e.akamai.net/assets.github.com/assets/github-6128521085633c772aafc55aae85defbcb9a3b48.js" type="text/javascript"></script>
+      
+      <meta http-equiv="x-pjax-version" content="80c4efcdd81e9f577f764c39c0c9f4d9">
+
+        <link data-pjax-transient rel='permalink' href='/nakkaya/nakkaya.com/blob/7a67a7befdd4ab420783cabedb6030ee4f83e922/resources/posts/2010-08-24-a-micro-manual-for-lisp-implemented-in-c.org'>
+    <meta property="og:title" content="nakkaya.com"/>
+    <meta property="og:type" content="githubog:gitrepository"/>
+    <meta property="og:url" content="https://github.com/nakkaya/nakkaya.com"/>
+    <meta property="og:image" content="https://secure.gravatar.com/avatar/02f9884dd5f520731261c61384a47b34?s=420&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <meta property="og:site_name" content="GitHub"/>
+    <meta property="og:description" content="nakkaya.com"/>
+    <meta property="twitter:card" content="summary"/>
+    <meta property="twitter:site" content="@GitHub">
+    <meta property="twitter:title" content="nakkaya/nakkaya.com"/>
+
+    <meta name="description" content="nakkaya.com" />
+
+
+    <meta content="88499" name="octolytics-dimension-user_id" /><meta content="nakkaya" name="octolytics-dimension-user_login" /><meta content="210139" name="octolytics-dimension-repository_id" /><meta content="nakkaya/nakkaya.com" name="octolytics-dimension-repository_nwo" /><meta content="true" name="octolytics-dimension-repository_public" /><meta content="false" name="octolytics-dimension-repository_is_fork" /><meta content="210139" name="octolytics-dimension-repository_network_root_id" /><meta content="nakkaya/nakkaya.com" name="octolytics-dimension-repository_network_root_nwo" />
+  <link href="https://github.com/nakkaya/nakkaya.com/commits/master.atom" rel="alternate" title="Recent Commits to nakkaya.com:master" type="application/atom+xml" />
+
+  </head>
+
+
+  <body class="logged_out page-blob linux vis-public env-production  ">
+    <div id="wrapper">
+
+      
+      
+      
+
+      
+      <div class="header header-logged-out">
+  <div class="container clearfix">
+
+    <a class="header-logo-wordmark" href="https://github.com/">Github</a>
+
+    <div class="header-actions">
+      <a class="button primary" href="/signup">Sign up</a>
+      <a class="button" href="/login?return_to=%2Fnakkaya%2Fnakkaya.com%2Fblob%2Fmaster%2Fresources%2Fposts%2F2010-08-24-a-micro-manual-for-lisp-implemented-in-c.org">Sign in</a>
+    </div>
+
+    <div class="command-bar js-command-bar  in-repository">
+
+
+      <ul class="top-nav">
+          <li class="explore"><a href="/explore">Explore</a></li>
+        <li class="features"><a href="/features">Features</a></li>
+          <li class="enterprise"><a href="http://enterprise.github.com/">Enterprise</a></li>
+          <li class="blog"><a href="/blog">Blog</a></li>
+      </ul>
+        <form accept-charset="UTF-8" action="/search" class="command-bar-form" id="top_search_form" method="get">
+  <a href="/search/advanced" class="advanced-search-icon tooltipped downwards command-bar-search" id="advanced_search" title="Advanced search"><span class="octicon octicon-gear "></span></a>
+
+  <input type="text" data-hotkey="/ s" name="q" id="js-command-bar-field" placeholder="Search or type a command" tabindex="1" autocapitalize="off"
+    
+      data-repo="nakkaya/nakkaya.com"
+      data-branch="master"
+      data-sha="b6ff91fcf3365c0d6e38f98a618b0adc643263d3"
+  >
+
+    <input type="hidden" name="nwo" value="nakkaya/nakkaya.com" />
+
+    <div class="select-menu js-menu-container js-select-menu search-context-select-menu">
+      <span class="minibutton select-menu-button js-menu-target">
+        <span class="js-select-button">This repository</span>
+      </span>
+
+      <div class="select-menu-modal-holder js-menu-content js-navigation-container">
+        <div class="select-menu-modal">
+
+          <div class="select-menu-item js-navigation-item selected">
+            <span class="select-menu-item-icon octicon octicon-check"></span>
+            <input type="radio" class="js-search-this-repository" name="search_target" value="repository" checked="checked" />
+            <div class="select-menu-item-text js-select-button-text">This repository</div>
+          </div> <!-- /.select-menu-item -->
+
+          <div class="select-menu-item js-navigation-item">
+            <span class="select-menu-item-icon octicon octicon-check"></span>
+            <input type="radio" name="search_target" value="global" />
+            <div class="select-menu-item-text js-select-button-text">All repositories</div>
+          </div> <!-- /.select-menu-item -->
+
+        </div>
+      </div>
+    </div>
+
+  <span class="octicon help tooltipped downwards" title="Show command bar help">
+    <span class="octicon octicon-question"></span>
+  </span>
+
+
+  <input type="hidden" name="ref" value="cmdform">
+
+  <div class="divider-vertical"></div>
+
+</form>
+    </div>
+
+  </div>
+</div>
+
+
+      
+
+
+            <div class="site hfeed" itemscope itemtype="http://schema.org/WebPage">
+      <div class="hentry">
+        
+        <div class="pagehead repohead instapaper_ignore readability-menu ">
+          <div class="container">
+            <div class="title-actions-bar">
+              
+
+<ul class="pagehead-actions">
+
+
+
+    <li>
+      <a href="/login?return_to=%2Fnakkaya%2Fnakkaya.com"
+        class="minibutton js-toggler-target star-button entice tooltipped upwards"
+        title="You must be signed in to use this feature" rel="nofollow">
+        <span class="octicon octicon-star"></span>Star
+      </a>
+      <a class="social-count js-social-count" href="/nakkaya/nakkaya.com/stargazers">
+        18
+      </a>
+    </li>
+    <li>
+      <a href="/login?return_to=%2Fnakkaya%2Fnakkaya.com"
+        class="minibutton js-toggler-target fork-button entice tooltipped upwards"
+        title="You must be signed in to fork a repository" rel="nofollow">
+        <span class="octicon octicon-git-branch"></span>Fork
+      </a>
+      <a href="/nakkaya/nakkaya.com/network" class="social-count">
+        8
+      </a>
+    </li>
+</ul>
+
+              <h1 itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public">
+                <span class="repo-label"><span>public</span></span>
+                <span class="mega-octicon octicon-repo"></span>
+                <span class="author vcard">
+                  <a href="/nakkaya" class="url fn" itemprop="url" rel="author">
+                  <span itemprop="title">nakkaya</span>
+                  </a></span> /
+                <strong><a href="/nakkaya/nakkaya.com" class="js-current-repository">nakkaya.com</a></strong>
+              </h1>
+            </div>
+
+            
+  <ul class="tabs">
+    <li class="pulse-nav"><a href="/nakkaya/nakkaya.com/pulse" class="js-selected-navigation-item " data-selected-links="pulse /nakkaya/nakkaya.com/pulse" rel="nofollow"><span class="octicon octicon-pulse"></span></a></li>
+    <li><a href="/nakkaya/nakkaya.com" class="js-selected-navigation-item selected" data-selected-links="repo_source repo_downloads repo_commits repo_tags repo_branches /nakkaya/nakkaya.com">Code</a></li>
+    <li><a href="/nakkaya/nakkaya.com/network" class="js-selected-navigation-item " data-selected-links="repo_network /nakkaya/nakkaya.com/network">Network</a></li>
+    <li><a href="/nakkaya/nakkaya.com/pulls" class="js-selected-navigation-item " data-selected-links="repo_pulls /nakkaya/nakkaya.com/pulls">Pull Requests <span class='counter'>0</span></a></li>
+
+
+
+
+    <li><a href="/nakkaya/nakkaya.com/graphs" class="js-selected-navigation-item " data-selected-links="repo_graphs repo_contributors /nakkaya/nakkaya.com/graphs">Graphs</a></li>
+
+
+  </ul>
+  
+<div class="tabnav">
+
+  <span class="tabnav-right">
+    <ul class="tabnav-tabs">
+          <li><a href="/nakkaya/nakkaya.com/tags" class="js-selected-navigation-item tabnav-tab" data-selected-links="repo_tags /nakkaya/nakkaya.com/tags">Tags <span class="counter blank">0</span></a></li>
+    </ul>
+  </span>
+
+  <div class="tabnav-widget scope">
+
+
+    <div class="select-menu js-menu-container js-select-menu js-branch-menu">
+      <a class="minibutton select-menu-button js-menu-target" data-hotkey="w" data-ref="master">
+        <span class="octicon octicon-git-branch"></span>
+        <i>branch:</i>
+        <span class="js-select-button">master</span>
+      </a>
+
+      <div class="select-menu-modal-holder js-menu-content js-navigation-container">
+
+        <div class="select-menu-modal">
+          <div class="select-menu-header">
+            <span class="select-menu-title">Switch branches/tags</span>
+            <span class="octicon octicon-remove-close js-menu-close"></span>
+          </div> <!-- /.select-menu-header -->
+
+          <div class="select-menu-filters">
+            <div class="select-menu-text-filter">
+              <input type="text" id="commitish-filter-field" class="js-filterable-field js-navigation-enable" placeholder="Filter branches/tags">
+            </div>
+            <div class="select-menu-tabs">
+              <ul>
+                <li class="select-menu-tab">
+                  <a href="#" data-tab-filter="branches" class="js-select-menu-tab">Branches</a>
+                </li>
+                <li class="select-menu-tab">
+                  <a href="#" data-tab-filter="tags" class="js-select-menu-tab">Tags</a>
+                </li>
+              </ul>
+            </div><!-- /.select-menu-tabs -->
+          </div><!-- /.select-menu-filters -->
+
+          <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket css-truncate" data-tab-filter="branches">
+
+            <div data-filterable-for="commitish-filter-field" data-filterable-type="substring">
+
+                <div class="select-menu-item js-navigation-item selected">
+                  <span class="select-menu-item-icon octicon octicon-check"></span>
+                  <a href="/nakkaya/nakkaya.com/blob/master/resources/posts/2010-08-24-a-micro-manual-for-lisp-implemented-in-c.org" class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target" data-name="master" rel="nofollow" title="master">master</a>
+                </div> <!-- /.select-menu-item -->
+            </div>
+
+              <div class="select-menu-no-results">Nothing to show</div>
+          </div> <!-- /.select-menu-list -->
+
+
+          <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket css-truncate" data-tab-filter="tags">
+            <div data-filterable-for="commitish-filter-field" data-filterable-type="substring">
+
+            </div>
+
+            <div class="select-menu-no-results">Nothing to show</div>
+
+          </div> <!-- /.select-menu-list -->
+
+        </div> <!-- /.select-menu-modal -->
+      </div> <!-- /.select-menu-modal-holder -->
+    </div> <!-- /.select-menu -->
+
+  </div> <!-- /.scope -->
+
+  <ul class="tabnav-tabs">
+    <li><a href="/nakkaya/nakkaya.com" class="selected js-selected-navigation-item tabnav-tab" data-selected-links="repo_source /nakkaya/nakkaya.com">Files</a></li>
+    <li><a href="/nakkaya/nakkaya.com/commits/master" class="js-selected-navigation-item tabnav-tab" data-selected-links="repo_commits /nakkaya/nakkaya.com/commits/master">Commits</a></li>
+    <li><a href="/nakkaya/nakkaya.com/branches" class="js-selected-navigation-item tabnav-tab" data-selected-links="repo_branches /nakkaya/nakkaya.com/branches" rel="nofollow">Branches <span class="counter ">1</span></a></li>
+  </ul>
+
+</div>
+
+  
+  
+  
+
+
+            
+          </div>
+        </div><!-- /.repohead -->
+
+        <div id="js-repo-pjax-container" class="container context-loader-container" data-pjax-container>
+          
+
+
+<!-- blob contrib key: blob_contributors:v21:4870da9b4ee50ac77e2356f8f808b52c -->
+<!-- blob contrib frag key: views10/v8/blob_contributors:v21:4870da9b4ee50ac77e2356f8f808b52c -->
+
+
+<div id="slider">
+    <div class="frame-meta">
+
+      <p title="This is a placeholder element" class="js-history-link-replace hidden"></p>
+
+        <div class="breadcrumb">
+          <span class='bold'><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/nakkaya/nakkaya.com" class="js-slide-to" data-branch="master" data-direction="back" itemscope="url"><span itemprop="title">nakkaya.com</span></a></span></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/nakkaya/nakkaya.com/tree/master/resources" class="js-slide-to" data-branch="master" data-direction="back" itemscope="url"><span itemprop="title">resources</span></a></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/nakkaya/nakkaya.com/tree/master/resources/posts" class="js-slide-to" data-branch="master" data-direction="back" itemscope="url"><span itemprop="title">posts</span></a></span><span class="separator"> / </span><strong class="final-path">2010-08-24-a-micro-manual-for-lisp-implemented-in-c.org</strong> <span class="js-zeroclipboard zeroclipboard-button" data-clipboard-text="resources/posts/2010-08-24-a-micro-manual-for-lisp-implemented-in-c.org" data-copied-hint="copied!" title="copy to clipboard"><span class="octicon octicon-clippy"></span></span>
+        </div>
+
+      <a href="/nakkaya/nakkaya.com/find/master" class="js-slide-to" data-hotkey="t" style="display:none">Show File Finder</a>
+
+
+        
+  <div class="commit file-history-tease">
+    <img class="main-avatar" height="24" src="https://secure.gravatar.com/avatar/02f9884dd5f520731261c61384a47b34?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="24" />
+    <span class="author"><a href="/nakkaya" rel="author">nakkaya</a></span>
+    <time class="js-relative-date" datetime="2012-01-08T07:47:40-08:00" title="2012-01-08 07:47:40">January 08, 2012</time>
+    <div class="commit-title">
+        <a href="/nakkaya/nakkaya.com/commit/7ba524efa1002db3aef769278f957c1f966b3c95" class="message">add license to micro lisp</a>
+    </div>
+
+    <div class="participation">
+      <p class="quickstat"><a href="#blob_contributors_box" rel="facebox"><strong>1</strong> contributor</a></p>
+      
+    </div>
+    <div id="blob_contributors_box" style="display:none">
+      <h2 class="facebox-header">Users who have contributed to this file</h2>
+      <ul class="facebox-user-list">
+        <li class="facebox-user-list-item">
+          <img height="24" src="https://secure.gravatar.com/avatar/02f9884dd5f520731261c61384a47b34?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="24" />
+          <a href="/nakkaya">nakkaya</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+    </div><!-- ./.frame-meta -->
+
+    <div class="frames">
+      <div class="frame" data-permalink-url="/nakkaya/nakkaya.com/blob/7a67a7befdd4ab420783cabedb6030ee4f83e922/resources/posts/2010-08-24-a-micro-manual-for-lisp-implemented-in-c.org" data-title="nakkaya.com/resources/posts/2010-08-24-a-micro-manual-for-lisp-implemented-in-c.org at master · nakkaya/nakkaya.com · GitHub" data-type="blob">
+
+        <div id="files" class="bubble">
+          <div class="file">
+            <div class="meta">
+              <div class="info">
+                <span class="icon"><b class="octicon octicon-file-text"></b></span>
+                <span class="mode" title="File Mode">file</span>
+                  <span>557 lines (443 sloc)</span>
+                <span>13.997 kb</span>
+              </div>
+              <div class="actions">
+                <div class="button-group">
+                      <a class="minibutton js-entice" href=""
+                         data-entice="You must be signed in and on a branch to make or propose changes">Edit</a>
+                  <a href="/nakkaya/nakkaya.com/raw/master/resources/posts/2010-08-24-a-micro-manual-for-lisp-implemented-in-c.org" class="button minibutton " id="raw-url">Raw</a>
+                    <a href="/nakkaya/nakkaya.com/blame/master/resources/posts/2010-08-24-a-micro-manual-for-lisp-implemented-in-c.org" class="button minibutton ">Blame</a>
+                  <a href="/nakkaya/nakkaya.com/commits/master/resources/posts/2010-08-24-a-micro-manual-for-lisp-implemented-in-c.org" class="button minibutton " rel="nofollow">History</a>
+                </div><!-- /.button-group -->
+              </div><!-- /.actions -->
+
+            </div>
+              
+  <div id="readme" class="blob instapaper_body">
+    <article class="markdown-body entry-content" itemprop="mainContentOfPage"><p>Recently I had to go through some code that uses the <a href="http://www.sics.se/~adam/uip/index.php/Main_Page">uIP</a> TCP/IP stack, which reminded me, it has been a long time since I did something in C so I ended up spending the weekend implementing the 10 rules <a href="http://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)">John McCarthy</a> described in his paper <a href="https://docs.google.com/fileview?id=0B0ZnV_0C-Q7IOTRkNzVjZjMtMWE1NC00YzQ3LTgzMWEtM2UwY2I1YzdmNmM5&amp;hl=en">A Micro-Manual for Lisp - not the whole Truth</a>.</p>
+<p>This is a literate program, the code in this document is the executable source, in order to extract it, open this <a href="https://github.com/nakkaya/nakkaya.com/tree/master/resources/posts/2010-08-24-a-micro-manual-for-lisp-implemented-in-c.html">raw file</a> with emacs and run,</p>
+<p>M-x org-babel-tangle</p>
+<p>enum type {CONS, ATOM, FUNC, LAMBDA};</p>
+<p>typedef struct{ enum type type; } object;</p>
+<p>typedef struct { enum type type; char *name; } atom_object;</p>
+<p>typedef struct { enum type type; object *car; object *cdr; } cons_object;</p>
+<p>typedef struct { enum type type; object* (<b>fn)(object</b>,object*); } func_object;</p>
+<p>typedef struct { enum type type; object* args; object* sexp; } lambda_object;</p>
+<p>We begin by defining four types of objects we will be using. CONS is what we use to hold lists, ATOMs are letters or digits anything that is not used by LISP, a FUNC holds a reference to a C function and a LAMBDA holds a lambda expression.</p>
+<p>object *read_tail(FILE *in) { object *token = next_token(in);</p>
+<p>if(strcmp(name(token),&#8221;)&#8221;) <code>= 0) return NULL; else if(strcmp(name(token),"(") =</code> 0) { object *first = read_tail(in); object *second = read_tail(in); return cons(first, second); }else{ object *first = token; object *second = read_tail(in); return cons(first, second); } }</p>
+<p>object *read(FILE *in) { object *token = next_token(in);</p>
+<p>if(strcmp(name(token),&#8221;(&#8220;) == 0) return read_tail(in);</p>
+<p>return token; }</p>
+<p><i>read</i> gets the next token from the file, if it is a left parentheses it calls <i>read_tail</i> to parse the rest of the list, otherwise returns the token read. A list (LIST e1 &#8230; en) is defined for each n to be (CONS e1 (CONS &#8230; (CONS en NIL))) so <b>read_tail</b> will keep calling itself concatenating cons cells until it hits a right parentheses.</p>
+<p>object* init_env(){ object *env = cons(cons(atom(&#8220;QUOTE&#8221;),cons(func(&amp;fn_quote),NULL)),NULL); append(env,cons(atom(&#8220;CAR&#8221;),cons(func(&amp;fn_car),NULL))); append(env,cons(atom(&#8220;CDR&#8221;),cons(func(&amp;fn_cdr),NULL))); append(env,cons(atom(&#8220;CONS&#8221;),cons(func(&amp;fn_cons),NULL))); append(env,cons(atom(&#8220;EQUAL&#8221;),cons(func(&amp;fn_equal),NULL))); append(env,cons(atom(&#8220;ATOM&#8221;),cons(func(&amp;fn_atom),NULL))); append(env,cons(atom(&#8220;COND&#8221;),cons(func(&amp;fn_cond),NULL))); append(env,cons(atom(&#8220;LAMBDA&#8221;),cons(func(&amp;fn_lambda),NULL))); append(env,cons(atom(&#8220;LABEL&#8221;),cons(func(&amp;fn_label),NULL)));</p>
+<p>tee = atom(&#8220;#T&#8221;); nil = cons(NULL,NULL);</p>
+<p>return env; }</p>
+<p>Now that we have a list to execute, we need to define the environment we will be evaluating the expressions in. Environment is a list of pairs during evaluation we replace those atoms with their values, we also define tee to be the atom <b>#T</b> and nil to be the empty list.</p>
+<p>object *eval_fn (object *sexp, object *env){ object *symbol = car(sexp); object *args = cdr(sexp);</p>
+<p>if(symbol-&gt;type <code>= LAMBDA) return fn_lambda(sexp,env); else if(symbol-&gt;type =</code> FUNC) return (((func_object *) (symbol))-&gt;fn)(args, env); else return sexp; }</p>
+<p>object *eval (object *sexp, object *env) { if(sexp == NULL) return nil;</p>
+<p>if(sexp-&gt;type <code>= CONS){ if(car(sexp)-&gt;type =</code> ATOM &amp;&amp; strcmp(name(car(sexp)), &#8220;LAMBDA&#8221;) == 0){ object* largs = car(cdr(sexp)); object* lsexp = car(cdr(cdr(sexp)));</p>
+<p>return lambda(largs,lsexp); }else{ object *accum = cons(eval(car(sexp),env),NULL); sexp = cdr(sexp);</p>
+<p>while (sexp != NULL &amp;&amp; sexp-&gt;type == CONS){ append(accum,eval(car(sexp),env)); sexp = cdr(sexp); }</p>
+<p>return eval_fn(accum,env); } }else{ object *val = lookup(name(sexp),env); if(val == NULL) return sexp; else return val; } }</p>
+<p>When we pass an S-Expression to eval, first we need to check if it is a lambda expression if it is we don&#8217;t evaluate it we just return a lambda object, if it is a list we call eval for each cell, this allows us to iterate through all the atoms in the list when we hit an atom we lookup its value in the environment if it has a value associated with it we return that otherwise we return the atom, at this point,</p>
+<p>(QUOTE A)</p>
+<p>is transformed into,</p>
+<p>(func-obj atom-obj)</p>
+<p>all eval\_fn has to do is check the type of the car of the list, if it is a function\_object it will call the function pointed by the function\_object passing cdr of the list as argument, if it is a lambda\_object we call the fn\_lambda which executes the lambda expression else we return the S-Expression.</p>
+<p>Each function_object holds a pointer to a function that takes two arguments, arguments to the function and the environment we are executing it in and returns an object.</p>
+<p>object *fn_lambda (object *args, object *env) { object *lambda = car(args); args = cdr(args);</p>
+<p>object <b>list = interleave((((lambda_object *) (lambda))-&gt;args),args); object</b> sexp = replace_atom((((lambda_object *) (lambda))-&gt;sexp),list); return eval(sexp,env); }</p>
+<p>A lambda_object holds two lists,</p>
+<p>(LAMBDA (X Y) (CONS (CAR X) Y)) args -&gt; (X Y) sexp -&gt; (CONS (CAR X) Y))</p>
+<p>to execute it first thing we do is interleave the args list with the arguments passed so while executing following,</p>
+<p>((LAMBDA (X Y) (CONS (CAR X) Y)) (QUOTE (A B)) (CDR (QUOTE (C D))))</p>
+<p>list will be,</p>
+<p>((X (A B)) (Y (D)))</p>
+<p>then we iterate over the sexp and replace every occurrence of X with (A B) and every occurrence of Y with (D) then call eval on the resulting expression.</p>
+<p>This covers everything we need to interpret the LISP defined in the paper passing a file containing the following,</p>
+<p>(QUOTE A) (QUOTE (A B C)) (CAR (QUOTE (A B C))) (CDR (QUOTE (A B C))) (CONS (QUOTE A) (QUOTE (B C))) (EQUAL (CAR (QUOTE (A B))) (QUOTE A)) (EQUAL (CAR (CDR (QUOTE (A B)))) (QUOTE A)) (ATOM (QUOTE A)) (COND ((ATOM (QUOTE A)) (QUOTE B)) ((QUOTE T) (QUOTE C))) ((LAMBDA (X Y) (CONS (CAR X) Y)) (QUOTE (A B)) (CDR (QUOTE (C D)))) (LABEL FF (LAMBDA (X Y) (CONS (CAR X) Y))) (FF (QUOTE (A B)) (CDR (QUOTE (C D)))) (LABEL XX (QUOTE (A B))) (CAR XX)</p>
+<p>should produce,</p>
+<p>lisp/ $ gcc -Wall lisp.c &amp;&amp; ./a.out test.lisp &gt; A &gt; (A B C) &gt; A &gt; (B C) &gt; (A B C) &gt; #T &gt; () &gt; #T &gt; B &gt; (A D) &gt; #T &gt; (A D) &gt; #T &gt; A</p></article>
+  </div>
+
+          </div>
+        </div>
+
+        <a href="#jump-to-line" rel="facebox" data-hotkey="l" class="js-jump-to-line" style="display:none">Jump to Line</a>
+        <div id="jump-to-line" style="display:none">
+          <h2>Jump to Line</h2>
+          <form accept-charset="UTF-8" class="js-jump-to-line-form">
+            <input class="textfield js-jump-to-line-field" type="text">
+            <div class="full-button">
+              <button type="submit" class="button">Go</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+<div id="js-frame-loading-template" class="frame frame-loading large-loading-area" style="display:none;">
+  <img class="js-frame-loading-spinner" src="https://a248.e.akamai.net/assets.github.com/images/spinners/octocat-spinner-128.gif" height="64" width="64">
+</div>
+
+
+        </div>
+      </div>
+      <div class="modal-backdrop"></div>
+    </div>
+
+      <div id="footer-push"></div><!-- hack for sticky footer -->
+    </div><!-- end of wrapper - hack for sticky footer -->
+
+      <!-- footer -->
+      <div id="footer">
+  <div class="container clearfix">
+
+      <dl class="footer_nav">
+        <dt>GitHub</dt>
+        <dd><a href="/about">About us</a></dd>
+        <dd><a href="/blog">Blog</a></dd>
+        <dd><a href="/contact">Contact &amp; support</a></dd>
+        <dd><a href="http://enterprise.github.com/">GitHub Enterprise</a></dd>
+        <dd><a href="http://status.github.com/">Site status</a></dd>
+      </dl>
+
+      <dl class="footer_nav">
+        <dt>Applications</dt>
+        <dd><a href="http://mac.github.com/">GitHub for Mac</a></dd>
+        <dd><a href="http://windows.github.com/">GitHub for Windows</a></dd>
+        <dd><a href="http://eclipse.github.com/">GitHub for Eclipse</a></dd>
+        <dd><a href="http://mobile.github.com/">GitHub mobile apps</a></dd>
+      </dl>
+
+      <dl class="footer_nav">
+        <dt>Services</dt>
+        <dd><a href="http://get.gaug.es/">Gauges: Web analytics</a></dd>
+        <dd><a href="http://speakerdeck.com">Speaker Deck: Presentations</a></dd>
+        <dd><a href="https://gist.github.com">Gist: Code snippets</a></dd>
+        <dd><a href="http://jobs.github.com/">Job board</a></dd>
+      </dl>
+
+      <dl class="footer_nav">
+        <dt>Documentation</dt>
+        <dd><a href="http://help.github.com/">GitHub Help</a></dd>
+        <dd><a href="http://developer.github.com/">Developer API</a></dd>
+        <dd><a href="http://github.github.com/github-flavored-markdown/">GitHub Flavored Markdown</a></dd>
+        <dd><a href="http://pages.github.com/">GitHub Pages</a></dd>
+      </dl>
+
+      <dl class="footer_nav">
+        <dt>More</dt>
+        <dd><a href="http://training.github.com/">Training</a></dd>
+        <dd><a href="/edu">Students &amp; teachers</a></dd>
+        <dd><a href="http://shop.github.com">The Shop</a></dd>
+        <dd><a href="/plans">Plans &amp; pricing</a></dd>
+        <dd><a href="http://octodex.github.com/">The Octodex</a></dd>
+      </dl>
+
+      <hr class="footer-divider">
+
+
+    <p class="right">&copy; 2013 <span title="0.05222s from fe19.rs.github.com">GitHub</span>, Inc. All rights reserved.</p>
+    <a class="left" href="/">
+      <span class="mega-octicon octicon-mark-github"></span>
+    </a>
+    <ul id="legal">
+        <li><a href="/site/terms">Terms of Service</a></li>
+        <li><a href="/site/privacy">Privacy</a></li>
+        <li><a href="/security">Security</a></li>
+    </ul>
+
+  </div><!-- /.container -->
+
+</div><!-- /.#footer -->
+
+
+    <div class="fullscreen-overlay js-fullscreen-overlay" id="fullscreen_overlay">
+  <div class="fullscreen-container js-fullscreen-container">
+    <div class="textarea-wrap">
+      <textarea name="fullscreen-contents" id="fullscreen-contents" class="js-fullscreen-contents" placeholder="" data-suggester="fullscreen_suggester"></textarea>
+          <div class="suggester-container">
+              <div class="suggester fullscreen-suggester js-navigation-container" id="fullscreen_suggester"
+                 data-url="/nakkaya/nakkaya.com/suggestions/commit">
+              </div>
+          </div>
+    </div>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a href="#" class="exit-fullscreen js-exit-fullscreen tooltipped leftwards" title="Exit Zen Mode">
+      <span class="mega-octicon octicon-screen-normal"></span>
+    </a>
+    <a href="#" class="theme-switcher js-theme-switcher tooltipped leftwards"
+      title="Switch themes">
+      <span class="octicon octicon-color-mode"></span>
+    </a>
+  </div>
+</div>
+
+
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="octicon octicon-alert"></span>
+      Something went wrong with that request. Please try again.
+      <a href="#" class="octicon octicon-remove-close ajax-error-dismiss"></a>
+    </div>
+
+    
+    <span id='server_response_time' data-time='0.05260' data-host='fe19'></span>
+    
+  </body>
+</html>
+
